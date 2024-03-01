@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Главная страница</title>
+</head>
+<body class="bodys">
+<div class="container-fluid">
+    <nav class="navbar navbar-light snav">
+        <div class="container-fluid snav">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/img/games.png}" alt="" width="80" height="80"/>
+            </a>
+            <h2 class="whitetext">Разработчики и игры</h2>
+        </div>
+    </nav>
+    <div class="container">
+        <br><br><br>
+        <div class="list-group text-center py-3 px-3">
+            <h2>Разделы</h2>
+            <a class="list-group-item list-group-itemprimary item hrefitem" href="/developers">Разработчики</a>
+            <a class="list-group-item list-group-iteminfo item hrefitem"  href="/games">Игры</a>
+        </div>
+        <br><br>
+    </div>
+</div>
+</body>
+</html>

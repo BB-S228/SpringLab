@@ -1,0 +1,15 @@
+.snav{background: #b49417;}
+.whitetext{color: white;}
+.item:hover{background: #b49417;}
+.item{background: #e3b82c;}
+.hrefitem:hover{color: white;}
+.hrefitem{color: white;}
+.bodys {
+    margin: 0;
+    background: #2f3130;
+    color: #fff;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+.html{background: #6c6c6c;}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html style=" height: 100%;">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Игры</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bodys">
+<div class="container-fluid">
+    <nav class="navbar navbar-light snav">
+        <div class="container-fluid snav">
+            <a class="navbar-brand" href="/">
+                <img th:src="@{/img/games.png}" alt="" width="80" height="80"/>
+            </a>
+            <h2 class="whitetext">Разработчики и игры</h2>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row justify-content-start "  >
+            <div class="col-8 border bg-light px-4"  >
+                <h3 class="text-dark">Игры</h3>
+                <table class="table"  >
+                    <thead>
+                    <tr>
+                        <th scope="col">Код</th>
+                        <th scope="col">Разработчик</th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Год выпуска</th>
+                        <th scope="col">Жанр</th>
+                        <th scope="col">Системные требования</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="var : ${list}">
+                        <td th:text="${var.getId()}"></td>
+                        <td th:text="${var.getDev().getName()}"></td>
+                        <td th:text="${var.getName()}"></td>
+                        <td th:text="${var.getRelease_year()}"></td>
+                        <td th:text="${var.getGenre()}"></td>
+                        <td th:text="${var.getSystem()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4 border px-4">
+                <form method="POST" th:action="@{/games/refactor_second}" th:object="${game}">
+                    <h3 style="color: white">Редактирование</h3>
+                    <div class="mb-3">
+                        <div class="col-sm-6">
+
+                            <label for="id" class="col-sm-3 col-form-label" style="color: white">Код</label>
+                            <input type="text" readonly name="inputid" class="form-control" id="id" th:field="*{id}"/>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+
+                            <label for="developer" class="col-sm-3 col-form-label">Разработчик</label>
+                            <div class="col-sm-7">
+                                <select style="width: 200%" th:field="*{dev_id}" name="developer" id="developer"
+                                        class="form-control">
+                                    <option th:value="-1">Выберите разработчика</option>
+                                    <option th:each="var : ${developers}" th:value="${var.getId()}"
+                                            th:text="${var.getName()}"></option>
+                                </select>
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('dev_id')}"
+                                     th:errors="*{dev_id}"></div>
+                            </div>
+
+                            <label for="name" class="col-sm-3 col-form-label" style="color: white">Название</label>
+                            <input type="text" name="inputname" class="form-control" id="name" th:field="*{name}"/>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+                            <label for="release_year" class="col-sm-3 col-form-label" style="color: white">Год выпуска</label>
+                            <input type="date" name="inputrelease_year" class="form-control" id="release_year" th:field="*{release_year}"/>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('release_year')}" th:errors="*{release_year}"></div>
+
+                            <label for="genre" class="col-sm-3 col-form-label" style="color: white">Жанр</label>
+                            <input type="text" name="inputgenre" class="form-control" id="genre" th:field="*{genre}"/>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></div>
+
+                            <label for="system" class="col-sm-3 col-form-label" style="color: white">Системные требования</label>
+                            <input type="text" name="inputsystem" class="form-control" id="system" th:field="*{system}"/>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('system')}" th:errors="*{system}"></div>
+                        </div>
+                    </div>
+                    <p>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Редактировать</button>
+                        <a href="/games"><button type="button" class="btn btn-primary">Отмена</button></a>
+                        <br>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
